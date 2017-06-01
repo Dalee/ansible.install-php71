@@ -1,0 +1,17 @@
+#
+- name: php - install xdebug support
+  apt:
+    name: "{{ item }}"
+    state: "present"
+  with_items:
+    - "php-xdebug"
+  when: "php_enable_xdebug|default(False)"
+
+- name: php - set xdebug config
+  template:
+    src: "xdebug.ini.j2"
+    dest: "/etc/php/7.1/cli/conf.d/20-xdebug.ini"
+    mode: 0644
+    owner: "root"
+    group: "root"
+  when: "php_enable_xdebug|default(False)"

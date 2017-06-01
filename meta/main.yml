@@ -1,0 +1,13 @@
+galaxy_info:
+  author: "Dalee Dev"
+  company: Dalee
+  license: BSD
+  description: "PHP 7.1, Composer and XDebug"
+  min_ansible_version: 1.4
+  platforms:
+   - name: Ubuntu
+     versions:
+      - xenial
+  categories:
+   - system
+dependencies: []

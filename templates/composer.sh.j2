@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#
+# {{ ansible_managed }}
+#
+# wrapper around composer to disable XDebug extension
+
+SUDO=$(which sudo)
+PHP=$(which php)
+COMPOSER_PHAR="{{ composer.target_path }}"
+PHP_ENABLE_MODULE=$(which phpenmod)
+PHP_DISABLE_MODULE=$(which phpdismod)
+
+${SUDO} ${PHP_ENABLE_MODULE} -s cli xdebug
+${PHP} ${COMPOSER_PHAR} "$@"
+CODE=$?
+${SUDO} ${PHP_DISABLE_MODULE} -s cli xdebug
+exit ${CODE}
